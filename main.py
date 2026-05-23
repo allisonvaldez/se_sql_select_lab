@@ -53,7 +53,10 @@ print("\n\n--- Order Details Data ---")
 print(order_details)
 
 # 9. Find the total amount for all orders, calculated as the sum of rounded total prices. The total price for each order is the priceEach multiplied by the quantityOrdered.
-sum_total_price = conn.execute(""" SELECT ROUND(SUM(priceEach * quantityOrdered)) FROM orderDetails""").fetchone()
+sum_total_price = conn.execute("""
+    SELECT SUM(ROUND(priceEach) * quantityOrdered)
+    FROM orderDetails
+""").fetchone()
 print("\n\nResults of sum_total_price:")
 print(sum_total_price)
 
